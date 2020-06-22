@@ -20,5 +20,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-      
+    - name: Checkout
+      uses: actions/checkout@v2.3.1
+
+    # Cache
+    - uses: actions/cache@v1.1.0
+      with:
+        path: Library
+        key: Library
+
+    # Build
+    - name: Build project
+      uses: webbertakken/unity-builder@v0.10
+      with:
+        unityVersion: 2019.2.11f1
+        targetPlatform: StandaloneWindows64  
